@@ -18,12 +18,18 @@ public class MemoryCandidateRepository implements CandidateRepository {
     private final Map<Integer, Candidate> candidates = new HashMap<>();
 
     private MemoryCandidateRepository() {
-        save(new Candidate(0, "Intern Java Developer", "I am looking for my first Java Developer Job", LocalDateTime.now()));
-        save(new Candidate(0, "Junior Java Developer", "I know how to write loops and bubble sort!", LocalDateTime.now()));
-        save(new Candidate(0, "Junior+ Java Developer", "I know how to work with different collections", LocalDateTime.now()));
-        save(new Candidate(0, "Middle Java Developer", "I know what Spring is!", LocalDateTime.now()));
-        save(new Candidate(0, "Middle+ Java Developer", "I am an experienced Java developer!", LocalDateTime.now()));
-        save(new Candidate(0, "Senior Java Developer", "I'm Batman", LocalDateTime.now()));
+        save(new Candidate(0, "Intern Java Developer",
+                "I am looking for my first Java Developer Job"));
+        save(new Candidate(0, "Junior Java Developer",
+                "I know how to write loops and bubble sort!"));
+        save(new Candidate(0, "Junior+ Java Developer",
+                "I know how to work with different collections"));
+        save(new Candidate(0, "Middle Java Developer",
+                "I know what Spring is!"));
+        save(new Candidate(0, "Middle+ Java Developer",
+                "I am an experienced Java developer!"));
+        save(new Candidate(0, "Senior Java Developer",
+                "I'm Batman"));
     }
 
     public static MemoryCandidateRepository getInstance() {
@@ -44,7 +50,11 @@ public class MemoryCandidateRepository implements CandidateRepository {
 
     @Override
     public boolean update(Candidate candidate) {
-        return candidates.computeIfPresent(candidate.getId(), (id, oldCandidate) -> new Candidate(oldCandidate.getId(), candidate.getName(), candidate.getDescription(), oldCandidate.getCreationDate())) != null;
+        return candidates.computeIfPresent(candidate.getId(), (id, oldCandidate)
+                -> new Candidate(
+                oldCandidate.getId(),
+                candidate.getName(),
+                candidate.getDescription())) != null;
     }
 
     @Override

@@ -7,13 +7,12 @@ public class Candidate {
     private int id;
     private String name;
     private String description;
-    private LocalDateTime creationDate;
+    private LocalDateTime creationDate = LocalDateTime.now();
 
-    public Candidate(int id, String name, String description, LocalDateTime creationDate) {
+    public Candidate(int id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.creationDate = creationDate;
     }
 
     public int getId() {
@@ -57,11 +56,11 @@ public class Candidate {
             return false;
         }
         Candidate candidate = (Candidate) o;
-        return id == candidate.id && Objects.equals(name, candidate.name) && Objects.equals(description, candidate.description) && Objects.equals(creationDate, candidate.creationDate);
+        return id == candidate.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, creationDate);
+        return Objects.hash(id);
     }
 }

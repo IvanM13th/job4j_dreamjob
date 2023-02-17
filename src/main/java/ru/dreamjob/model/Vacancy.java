@@ -7,13 +7,16 @@ public class Vacancy {
     private int id;
     private String title;
     private String description;
-    private LocalDateTime creationTime;
+    private LocalDateTime creationTime = LocalDateTime.now();
 
-    public Vacancy(int id, String title, String description, LocalDateTime creationTime) {
+    public Vacancy(int id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.creationTime = creationTime;
+    }
+
+    public Vacancy() {
+
     }
 
     public int getId() {
@@ -57,11 +60,11 @@ public class Vacancy {
             return false;
         }
         Vacancy vacancy = (Vacancy) o;
-        return id == vacancy.id && Objects.equals(title, vacancy.title);
+        return id == vacancy.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title);
+        return Objects.hash(id);
     }
 }

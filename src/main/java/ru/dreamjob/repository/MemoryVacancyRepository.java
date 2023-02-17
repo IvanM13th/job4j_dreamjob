@@ -17,12 +17,21 @@ public class MemoryVacancyRepository implements VacancyRepository {
     private final Map<Integer, Vacancy> vacancies = new HashMap<>();
 
     private MemoryVacancyRepository() {
-        save(new Vacancy(0, "Intern Java Developer", "We are looking for low-to-now experience Java developer", LocalDateTime.now()));
-        save(new Vacancy(0, "Junior Java Developer", "We are looking for Java developer with some eperience", LocalDateTime.now()));
-        save(new Vacancy(0, "Junior+ Java Developer", "Java developer with good understanding of Java core", LocalDateTime.now()));
-        save(new Vacancy(0, "Middle Java Developer", "Spring, Thymeleaf, Collections", LocalDateTime.now()));
-        save(new Vacancy(0, "Middle+ Java Developer", "Spring, docker, microservices", LocalDateTime.now()));
-        save(new Vacancy(0, "Senior Java Developer", "We are looking for highly experienced Jedi knight who fought armies of droids and is able to mind control our clients to make us drastically rich", LocalDateTime.now()));
+        save(new Vacancy(0, "Intern Java Developer",
+                "We are looking for low-to-now experience Java developer"));
+        save(new Vacancy(0, "Junior Java Developer",
+                "We are looking for Java developer with some experience"));
+        save(new Vacancy(0, "Junior+ Java Developer",
+                "Java developer with good understanding of Java core"));
+        save(new Vacancy(0, "Middle Java Developer",
+                "Spring, Thymeleaf, Collections"));
+        save(new Vacancy(0, "Middle+ Java Developer",
+                "Spring, docker, microservices"));
+        save(new Vacancy(0, "Senior Java Developer",
+                "We are looking for highly experienced Jedi knight "
+                        + "who fought armies of droids "
+                        + "and is able to mind control our clients "
+                        + "to make us drastically rich"));
     }
 
     public static MemoryVacancyRepository getInstance() {
@@ -43,7 +52,10 @@ public class MemoryVacancyRepository implements VacancyRepository {
 
     @Override
     public boolean update(Vacancy vacancy) {
-        return vacancies.computeIfPresent(vacancy.getId(), (id, oldVacancy) -> new Vacancy(oldVacancy.getId(), vacancy.getTitle(), vacancy.getDescription(), oldVacancy.getCreationTime())) != null;
+        return vacancies.computeIfPresent(vacancy.getId(), (id, oldVacancy)
+                -> new Vacancy(oldVacancy.getId(),
+                vacancy.getTitle(),
+                vacancy.getDescription())) != null;
     }
 
     @Override

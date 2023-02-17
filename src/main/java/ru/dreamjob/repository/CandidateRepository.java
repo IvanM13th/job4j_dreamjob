@@ -1,7 +1,6 @@
 package ru.dreamjob.repository;
 
 import ru.dreamjob.model.Candidate;
-import ru.dreamjob.model.Vacancy;
 
 import java.util.Collection;
 import java.util.Optional;
