@@ -13,7 +13,6 @@ public class VacancyController {
     private final VacancyRepository vacancyRepository = MemoryVacancyRepository.getInstance();
 
     /**
-     *
      * @param model используется Thymeleaf для поиска объектов, которые нужно отобразить на виде
      * @return vacancies.html
      */
@@ -21,5 +20,10 @@ public class VacancyController {
     public String getAll(Model model) {
         model.addAttribute("vacancies", vacancyRepository.findAll());
         return "vacancies/list";
+    }
+
+    @GetMapping("/create")
+    public String getCreationPage() {
+        return "vacancies/create";
     }
 }
