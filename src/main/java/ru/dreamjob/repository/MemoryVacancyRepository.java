@@ -1,16 +1,12 @@
 package ru.dreamjob.repository;
 
 import ru.dreamjob.model.Vacancy;
-
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class MemoryVacancyRepository implements VacancyRepository {
-
-    private static final MemoryVacancyRepository INSTANCE = new MemoryVacancyRepository();
 
     private int nextId = 1;
 
@@ -32,10 +28,6 @@ public class MemoryVacancyRepository implements VacancyRepository {
                         + "who fought armies of droids "
                         + "and is able to mind control our clients "
                         + "to make us drastically rich"));
-    }
-
-    public static MemoryVacancyRepository getInstance() {
-        return INSTANCE;
     }
 
     @Override

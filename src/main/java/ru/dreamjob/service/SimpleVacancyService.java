@@ -1,19 +1,16 @@
 package ru.dreamjob.service;
 
 import ru.dreamjob.model.Vacancy;
-import ru.dreamjob.repository.MemoryVacancyRepository;
 import ru.dreamjob.repository.VacancyRepository;
-
 import java.util.Collection;
 import java.util.Optional;
 
 public class SimpleVacancyService implements VacancyService {
-    private static final SimpleVacancyService INSTANCE = new SimpleVacancyService();
 
-    private final VacancyRepository vacancyRepository = MemoryVacancyRepository.getInstance();
+    private final VacancyRepository vacancyRepository;
 
-    public static SimpleVacancyService getInstance() {
-        return INSTANCE;
+    public SimpleVacancyService(VacancyRepository vacancyRepository) {
+        this.vacancyRepository = vacancyRepository;
     }
 
     @Override

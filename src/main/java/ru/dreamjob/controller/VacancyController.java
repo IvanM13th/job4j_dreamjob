@@ -4,13 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.dreamjob.model.Vacancy;
-import ru.dreamjob.service.SimpleVacancyService;
 import ru.dreamjob.service.VacancyService;
 
 @Controller
 @RequestMapping("/vacancies")
 public class VacancyController {
-    private final VacancyService vacancyService = SimpleVacancyService.getInstance();
+
+    public VacancyController(VacancyService vacancyService) {
+        this.vacancyService = vacancyService;
+    }
+
+    private final VacancyService vacancyService;
+
 
     /**
      * @param model используется Thymeleaf для поиска объектов, которые нужно отобразить на виде

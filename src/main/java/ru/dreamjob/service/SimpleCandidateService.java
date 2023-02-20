@@ -2,18 +2,15 @@ package ru.dreamjob.service;
 
 import ru.dreamjob.model.Candidate;
 import ru.dreamjob.repository.CandidateRepository;
-import ru.dreamjob.repository.MemoryCandidateRepository;
-
 import java.util.Collection;
 import java.util.Optional;
 
 public class SimpleCandidateService  implements CandidateService {
-    private static final SimpleCandidateService INSTANCE = new SimpleCandidateService();
 
-    private final CandidateRepository candidateRepository = MemoryCandidateRepository.getInstance();
+    private final CandidateRepository candidateRepository;
 
-    public static SimpleCandidateService getInstance() {
-        return INSTANCE;
+    public SimpleCandidateService(CandidateRepository candidateRepository) {
+        this.candidateRepository = candidateRepository;
     }
 
     @Override

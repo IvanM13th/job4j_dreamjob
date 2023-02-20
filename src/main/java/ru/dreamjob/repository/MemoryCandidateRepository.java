@@ -1,17 +1,12 @@
 package ru.dreamjob.repository;
 
 import ru.dreamjob.model.Candidate;
-import ru.dreamjob.model.Vacancy;
-
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class MemoryCandidateRepository implements CandidateRepository {
-
-    private static final MemoryCandidateRepository INSTANCE = new MemoryCandidateRepository();
 
     private int nextId = 1;
 
@@ -30,10 +25,6 @@ public class MemoryCandidateRepository implements CandidateRepository {
                 "I am an experienced Java developer!"));
         save(new Candidate(0, "Senior Java Developer",
                 "I'm Batman"));
-    }
-
-    public static MemoryCandidateRepository getInstance() {
-        return INSTANCE;
     }
 
     @Override
