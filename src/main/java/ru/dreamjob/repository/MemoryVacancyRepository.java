@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @ThreadSafe
 public class MemoryVacancyRepository implements VacancyRepository {
 
-    private final AtomicInteger nextId = new AtomicInteger(1);
+    private final AtomicInteger nextId = new AtomicInteger();
 
     private final ConcurrentHashMap<Integer, Vacancy> vacancies = new ConcurrentHashMap<>();
 
@@ -52,9 +52,11 @@ public class MemoryVacancyRepository implements VacancyRepository {
     @Override
     public boolean update(Vacancy vacancy) {
         return vacancies.computeIfPresent(vacancy.getId(), (id, oldVacancy)
-                -> new Vacancy(oldVacancy.getId(),
+                -> new Vacancy(
+                oldVacancy.getId(),
                 vacancy.getTitle(),
-                vacancy.getDescription())) != null;
+                vacancy.getDescription(),
+                vacancy.getVisible())) != null;
     }
 
     @Override
@@ -70,7 +72,8 @@ public class MemoryVacancyRepository implements VacancyRepository {
                     candidate.getId(),
                     candidate.getTitle(),
                     candidate.getDescription(),
-                    candidate.getCreationTime()
+                    candidate.getCreationTime(),
+                    candidate.getVisible()
             ));
         }
         return listOfVacancies;

@@ -7,7 +7,16 @@ public class Vacancy {
     private int id;
     private String title;
     private String description;
+
+    private boolean visible;
     private LocalDateTime creationTime = LocalDateTime.now();
+
+    public Vacancy(int id, String title, String description, boolean visible) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.visible = visible;
+    }
 
     public Vacancy(int id, String title, String description) {
         this.id = id;
@@ -17,6 +26,14 @@ public class Vacancy {
 
     public Vacancy() {
 
+    }
+
+    public boolean getVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     public int getId() {
@@ -51,12 +68,13 @@ public class Vacancy {
         this.creationTime = creationTime;
     }
 
-    public static Vacancy of(int id, String title, String desc, LocalDateTime creationDate) {
+    public static Vacancy of(int id, String title, String desc, LocalDateTime creationDate, boolean visible) {
         Vacancy vacancy = new Vacancy();
         vacancy.id = id;
         vacancy.title = title;
         vacancy.description = desc;
         vacancy.creationTime = creationDate;
+        vacancy.visible = visible;
         return vacancy;
     }
 
