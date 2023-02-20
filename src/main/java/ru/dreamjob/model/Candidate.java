@@ -15,6 +15,10 @@ public class Candidate {
         this.description = description;
     }
 
+    public Candidate() {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -45,6 +49,15 @@ public class Candidate {
 
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public static Candidate of(int id, String name, String desc, LocalDateTime creationDate) {
+        Candidate candidate = new Candidate();
+        candidate.id = id;
+        candidate.name = name;
+        candidate.description = desc;
+        candidate.creationDate = creationDate;
+        return candidate;
     }
 
     @Override

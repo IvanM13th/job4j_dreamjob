@@ -51,6 +51,15 @@ public class Vacancy {
         this.creationTime = creationTime;
     }
 
+    public static Vacancy of(int id, String title, String desc, LocalDateTime creationDate) {
+        Vacancy vacancy = new Vacancy();
+        vacancy.id = id;
+        vacancy.title = title;
+        vacancy.description = desc;
+        vacancy.creationTime = creationDate;
+        return vacancy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
