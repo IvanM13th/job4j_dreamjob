@@ -9,12 +9,14 @@ public class Candidate {
     private String description;
     private LocalDateTime creationDate = LocalDateTime.now();
     private int cityId;
+    private int fileId;
 
-    public Candidate(int id, String name, String description, int cityId) {
+    public Candidate(int id, String name, String description, int cityId, int fileId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.cityId = cityId;
+        this.fileId = fileId;
     }
 
     public Candidate(int id, String name, String description) {
@@ -25,6 +27,14 @@ public class Candidate {
 
     public Candidate() {
 
+    }
+
+    public int getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(int fileId) {
+        this.fileId = fileId;
     }
 
     public int getCityId() {
@@ -67,12 +77,15 @@ public class Candidate {
         this.creationDate = creationDate;
     }
 
-    public static Candidate of(int id, String name, String desc, LocalDateTime creationDate) {
+    public static Candidate of(int id, String name, String desc, LocalDateTime creationDate,
+                               int cityId, int fileId) {
         Candidate candidate = new Candidate();
         candidate.id = id;
         candidate.name = name;
         candidate.description = desc;
         candidate.creationDate = creationDate;
+        candidate.cityId = cityId;
+        candidate.fileId = fileId;
         return candidate;
     }
 
