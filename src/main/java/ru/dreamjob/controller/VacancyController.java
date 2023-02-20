@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.dreamjob.model.Vacancy;
+import ru.dreamjob.service.CityService;
 import ru.dreamjob.service.VacancyService;
 
 @Controller
@@ -12,12 +13,13 @@ import ru.dreamjob.service.VacancyService;
 @RequestMapping("/vacancies")
 public class VacancyController {
 
-    public VacancyController(VacancyService vacancyService) {
-        this.vacancyService = vacancyService;
-    }
-
     private final VacancyService vacancyService;
+    private final CityService cityService;
 
+    public VacancyController(VacancyService vacancyService, CityService cityService) {
+        this.vacancyService = vacancyService;
+        this.cityService = cityService;
+    }
 
     /**
      * @param model используется Thymeleaf для поиска объектов, которые нужно отобразить на виде
@@ -30,7 +32,8 @@ public class VacancyController {
     }
 
     @GetMapping("/create")
-    public String getCreationPage() {
+    public String getCreationPage(Model model) {
+        model.addAttribute("cities", cityService.findAll());
         return "vacancies/create";
     }
 
@@ -47,6 +50,7 @@ public class VacancyController {
             model.addAttribute("message", "Вакансия с таким id не найдена");
             return "errors/404";
         }
+        model.addAttribute("cities", cityService.findAll());
         model.addAttribute("vacancy", vacancyOptional.get());
         return "vacancies/one";
     }

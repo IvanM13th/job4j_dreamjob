@@ -56,7 +56,8 @@ public class MemoryVacancyRepository implements VacancyRepository {
                 oldVacancy.getId(),
                 vacancy.getTitle(),
                 vacancy.getDescription(),
-                vacancy.getVisible())) != null;
+                vacancy.getVisible(),
+                vacancy.getCityId())) != null;
     }
 
     @Override

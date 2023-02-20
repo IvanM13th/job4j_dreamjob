@@ -51,7 +51,8 @@ public class MemoryCandidateRepository implements CandidateRepository {
                 -> new Candidate(
                 oldCandidate.getId(),
                 candidate.getName(),
-                candidate.getDescription())) != null;
+                candidate.getDescription(),
+                candidate.getCityId())) != null;
     }
 
     @Override
