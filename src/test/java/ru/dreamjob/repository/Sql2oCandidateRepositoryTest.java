@@ -15,7 +15,6 @@ import static java.util.Collections.emptyList;
 import static java.util.Optional.empty;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled
 public class Sql2oCandidateRepositoryTest {
     private static Sql2oCandidateRepository sql2oCandidateRepository;
     private static Sql2oFileRepository sql2oFileRepository;
