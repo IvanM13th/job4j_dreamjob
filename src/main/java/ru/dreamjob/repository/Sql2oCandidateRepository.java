@@ -1,5 +1,6 @@
 package ru.dreamjob.repository;
 
+import org.junit.jupiter.api.Disabled;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 import ru.dreamjob.model.Candidate;
@@ -7,6 +8,7 @@ import ru.dreamjob.model.Candidate;
 import java.util.Collection;
 import java.util.Optional;
 
+@Disabled
 @Repository
 public class Sql2oCandidateRepository implements CandidateRepository {
 
