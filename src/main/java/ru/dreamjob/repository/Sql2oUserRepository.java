@@ -29,7 +29,7 @@ public class Sql2oUserRepository implements UserRepository {
             int generatedKey = query.executeUpdate().getKey(Integer.class);
             user.setId(generatedKey);
         }
-        return Optional.of(user);
+        return Optional.ofNullable(user);
     }
 
     @Override
