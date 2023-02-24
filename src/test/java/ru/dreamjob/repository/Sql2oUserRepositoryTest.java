@@ -7,6 +7,7 @@ import ru.dreamjob.configuration.DatasourceConfiguration;
 import ru.dreamjob.model.User;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Properties;
 
 import static java.util.Optional.empty;
@@ -69,9 +70,9 @@ public class Sql2oUserRepositoryTest {
 
     @Test
     public void whenEmailAlreadyExists() {
-        var user1 = sql2oUserRepository.save(new User(0, "123@321.ru", "Ivan", "password")).get();
+        var user1 = sql2oUserRepository.save(new User(0, "123@321.ru", "Ivan", "password"));
         var user2 = new User(0, "123@321.ru", "Ivan", "password");
-        assertThatThrownBy(() -> sql2oUserRepository.save(user2))
-                .isInstanceOf(Exception.class);
+        Optional<User> savedUser = sql2oUserRepository.save(user2);
+        assertThat(savedUser).isEqualTo(empty());
     }
 }
