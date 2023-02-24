@@ -28,8 +28,10 @@ public class Sql2oUserRepository implements UserRepository {
                     .addParameter("password", user.getPassword());
             int generatedKey = query.executeUpdate().getKey(Integer.class);
             user.setId(generatedKey);
+            return Optional.of(user);
+        } catch (Exception e) {
+            return Optional.empty();
         }
-        return Optional.ofNullable(user);
     }
 
     @Override

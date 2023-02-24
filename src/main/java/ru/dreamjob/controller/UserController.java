@@ -12,6 +12,7 @@ import ru.dreamjob.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Controller
 @ThreadSafe
@@ -25,7 +26,13 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String getRegistrationPage() {
+    public String getRegistrationPage(Model model, HttpSession session) {
+        var user = (User) session.getAttribute("user");
+        if (user == null) {
+            user = new User();
+            user.setName("Гость");
+        }
+        model.addAttribute("user", user);
         return "users/register";
     }
 
@@ -43,13 +50,13 @@ public class UserController {
     @PostMapping("/register")
     public String register(@ModelAttribute User user,
                            Model model) {
-        try {
-            userService.save(user);
-            return "index";
-        } catch (Exception exception) {
-            model.addAttribute("message", exception.getMessage());
+        Optional<User> savedUser = userService.save(user);
+        if (savedUser.isEmpty()) {
+            user.setName("Гость");
+            model.addAttribute("message", "Пользователь с такой почтой уже существует");
             return "errors/404";
         }
+        return "index";
     }
 
     @PostMapping("/login")
